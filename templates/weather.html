@@ -1,0 +1,44 @@
+{% extends 'navbar.html' %}
+{% load static %}
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WEATHER</title>
+</head>
+<body>
+{% block body %}
+<div>
+    <div class="container">
+  <div class="row">
+    <div class="col-sm-5 col-md-6">
+        <div>
+            <h1>Welcome to Divya's Travel Tourism and Management </h1>
+        <form method="post" action="{% url 'weatherlogic' %}">
+        {% csrf_token %}
+        <h5>
+        <label>Enter a city name:</label>
+        <input type="text" name="place">
+        <button type="submit" class="btn btn-info">Check temperature</button>
+        </h5>
+    </form>
+            </div>
+    </div>
+    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+        <br><br><br>
+        <h1>Top vacation Destinations</h1>
+          <br><br>
+          <h1>
+              {% if error_message %}
+        <p>{{error_message  }}</p>
+    {% else %}
+              <p>City: {{ city }}</p>
+              <p>Temperature: {{ temperature1 }} &#8451;</p>
+              <p>Humidity : {{ humidity }}%</p>
+    {% endif %}
+        </h1>
+    </div>
+</div>
+{% endblock %}
+    </div></body>
+</html>
